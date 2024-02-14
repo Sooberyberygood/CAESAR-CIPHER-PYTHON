@@ -32,18 +32,25 @@ if opt == "encode":
     print("------------------------------------------------------------------------------------------")
     text = input("Input the text you would like to encode: ")
     shift = int(input("Input a shift count: "))
-    for a in text:
-        if a.isalpha():
+    for a in text: #this is so we can track the letters in the text
+        if a.isalnum():
             if a.isupper():
                 start = ord("A")
-            elif a.islower():
-                start = ord("a")
-            pos = ((ord(a) - start) + shift) % 26 + start
-            letter = chr(pos)
-            string += letter
-        elif a.isdigit():
-            pos = (int(a) + shift) % 10
-            string += str(pos)
+            elif a.islower(): 
+                start = ord("a") 
+            if a.isalpha():
+                pos = ((ord(a) - start) + shift) % 26 + start
+                letter = chr(pos)
+                string += letter
+            elif a.isdigit():
+                pos = (int(a) + shift) % 10
+                string += str(pos)
+        elif not a.isalnum():
+            start = ord("!")
+            end = ord("~") + 1
+            pos = ((ord(a) - start) + shift) % (end - start) + start
+            special = chr(pos)
+            string += special
         else:
             string += a
     print("")
