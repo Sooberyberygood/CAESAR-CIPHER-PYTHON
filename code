@@ -51,8 +51,6 @@ if opt == "encode":
             pos = ((ord(a) - start) + shift) % (end - start) + start
             special = chr(pos)
             string += special
-        else:
-            string += a
     print("")
     print("Your Text:", text)
     print("Encoded Text:", string)
