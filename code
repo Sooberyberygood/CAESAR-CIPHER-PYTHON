@@ -57,4 +57,4 @@ elif opt == "decode":
 elif opt == "exit":
     sys.exit()
 else:
-    print("Please input a digit for the shift count.")
+    print("That isn't an option...")
