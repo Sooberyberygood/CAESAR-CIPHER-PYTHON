@@ -62,7 +62,8 @@ elif opt == "decode":
     os.system('cls')
     text = input("Input the text you would like to decode: ")
     shift = int(input("Input a shift count: "))
-    for a in text: #this is so we can track the letters in the text
+    for a in text: 
+
         if a.isalnum():
             if a.isupper():
                 start = ord("A")
