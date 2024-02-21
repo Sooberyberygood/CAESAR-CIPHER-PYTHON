@@ -1,4 +1,5 @@
 import sys
+import os
 logo = """
  ██████╗ █████╗ ███████╗███████╗ █████╗ ██████╗      ██████╗██╗██████╗ ██╗  ██╗███████╗██████╗ 
 ██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗    ██╔════╝██║██╔══██╗██║  ██║██╔════╝██╔══██╗
@@ -58,7 +59,35 @@ elif opt == "decode":
     print("------------------------------------------------------------------------------------------")
     print(decode)
     print("------------------------------------------------------------------------------------------")
-    # add your decode code here
+    os.system('cls')
+    text = input("Input the text you would like to decode: ")
+    shift = int(input("Input a shift count: "))
+    for a in text: #this is so we can track the letters in the text
+        if a.isalnum():
+            if a.isupper():
+                start = ord("A")
+            elif a.islower(): 
+                start = ord("a") 
+            if a.isalpha():
+                pos = ((ord(a) - start) - shift) % 26 + start
+                letter = chr(pos)
+                string += letter
+            elif a.isdigit():
+                pos = (int(a) - shift) % 10
+                string += str(pos)
+        elif not a.isalnum():
+            start = ord("!")
+            end = ord("~") - 1
+            pos = ((ord(a) - start) - shift) % (end - start) + start
+            special = chr(pos)
+            string += special
+    print("")
+    print("Your Text:", text)
+    print("Decoded Text:", string)
+    
+    print("------------------------------------------------------------------------------------------")
+    
+    print("------------------------------------------------------------------------------------------")
 elif opt == "exit":
     sys.exit()
 else:
