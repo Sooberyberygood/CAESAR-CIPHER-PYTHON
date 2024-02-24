@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 logo = """
  ██████╗ █████╗ ███████╗███████╗ █████╗ ██████╗      ██████╗██╗██████╗ ██╗  ██╗███████╗██████╗ 
 ██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗    ██╔════╝██║██╔══██╗██║  ██║██╔════╝██╔══██╗
@@ -22,6 +22,8 @@ decode = """
 ██   ██ ██      ██      ██    ██ ██   ██ ██      
 ██████  ███████  ██████  ██████  ██████  ███████                                                                                                   
 """
+
+os.system('cls')
 print(logo)
 print("------------------------------------------------------------------------------------------")
 opt = input("Would you like to decode or encode? ").lower()
@@ -33,7 +35,7 @@ if opt == "encode":
     print("------------------------------------------------------------------------------------------")
     text = input("Input the text you would like to encode: ")
     shift = int(input("Input a shift count: "))
-    for a in text: #this is so we can track the letters in the text
+    for a in text: 
         if a.isalnum():
             if a.isupper():
                 start = ord("A")
@@ -46,6 +48,8 @@ if opt == "encode":
             elif a.isdigit():
                 pos = (int(a) + shift) % 10
                 string += str(pos)
+        elif a == " ":
+            string += " "
         elif not a.isalnum():
             start = ord("!")
             end = ord("~") + 1
@@ -53,17 +57,15 @@ if opt == "encode":
             special = chr(pos)
             string += special
     print("")
-    print("Your Text:", text)
+    print("Your Text:", text)   
     print("Encoded Text:", string)
 elif opt == "decode":
     print("------------------------------------------------------------------------------------------")
     print(decode)
     print("------------------------------------------------------------------------------------------")
-    os.system('cls')
     text = input("Input the text you would like to decode: ")
     shift = int(input("Input a shift count: "))
     for a in text: 
-
         if a.isalnum():
             if a.isupper():
                 start = ord("A")
@@ -76,6 +78,8 @@ elif opt == "decode":
             elif a.isdigit():
                 pos = (int(a) - shift) % 10
                 string += str(pos)
+        elif a == " ":
+            string += " "
         elif not a.isalnum():
             start = ord("!")
             end = ord("~") - 1
@@ -85,10 +89,6 @@ elif opt == "decode":
     print("")
     print("Your Text:", text)
     print("Decoded Text:", string)
-    
-    print("------------------------------------------------------------------------------------------")
-    
-    print("------------------------------------------------------------------------------------------")
 elif opt == "exit":
     sys.exit()
 else:
